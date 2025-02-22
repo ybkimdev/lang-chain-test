@@ -1,19 +1,16 @@
 from dotenv import load_dotenv
+from langchain.chat_models import init_chat_model
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
 
-from langchain.chat_models import init_chat_model
-
 model = init_chat_model("gpt-4o-mini", model_provider="openai")
-
-from langchain_core.messages import HumanMessage, SystemMessage
 
 messages = [
     SystemMessage("Translate the following from English into Italian"),
     HumanMessage("hi!"),
 ]
-
-from langchain_core.prompts import ChatPromptTemplate
 
 system_template = "Translate the following from English into {language}"
 prompt_template = ChatPromptTemplate.from_messages(
